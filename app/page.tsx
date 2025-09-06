@@ -1,10 +1,10 @@
 export default function Page() {
   return (
-    <main className="mx-auto max-w-screen-xl px-4 py-10">
-      <h1 className="text-2xl font-semibold">Ana Sayfa</h1>
-      <p className="mt-2 text-sm opacity-80">
+    <section className="py-10">
+      <h1 className="text-2xl font-extrabold">Ana Sayfa</h1>
+      <p className="mt-2 opacity-80">
         Hoş geldin! Üstteki butondan cüzdanını bağlayabilirsin.
       </p>
-    </main>
+    </section>
   );
 }

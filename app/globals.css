@@ -1,10 +1,8 @@
 @import "tailwindcss";
 
-/* ... (diğer kısımlar aynen kalsın) ... */
-
 :root {
-  --background: #121426; /* yeni arka plan */
-  --foreground: #ffffff; /* tüm metinler beyaz */
+  --background: #121426;
+  --foreground: #ffffff;
 }
 
 @theme inline {
@@ -14,11 +12,35 @@
   --font-mono: var(--font-geist-mono);
 }
 
-/* Dark modda da aynı görünmesini istiyorsan böyle bırak */
 @media (prefers-color-scheme: dark) {
   :root {
     --background: #121426;
     --foreground: #ffffff;
+  }
+}
+@layer base {
+  input[type="number"]::-webkit-outer-spin-button,
+  input[type="number"]::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+  }
+
+  input[type="number"] {
+    -moz-appearance: textfield;
+  }
+}
+@layer utilities {
+  .invest-btn {
+    background-color: #4f46e5 !important;
+    color: #ffffff !important;
+    border-radius: 8px !important;
+    width: 80% !important;
+    display: block !important;
+    margin-left: auto !important;
+    margin-right: auto !important;
+    padding-top: 12px !important;
+    padding-bottom: 12px !important;
+    font-weight: 600 !important;
   }
 }
 

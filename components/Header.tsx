@@ -19,7 +19,7 @@ export default function Header() {
             href="/"
             className="text-2xl font-extrabold tracking-tight font-verdana"
           >
-            Proje Adı
+            FinMate
           </Link>
           <Link
             href="/page2"

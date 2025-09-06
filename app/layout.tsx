@@ -10,7 +10,7 @@ export default function RootLayout({ children }: { children: ReactNode }) {
       <body className="bg-background text-foreground antialiased">
         <Providers>
           <Header />
-          {children}
+          <main className="w-full px-[45px]">{children}</main>
         </Providers>
       </body>
     </html>
