@@ -1,8 +1,10 @@
 @import "tailwindcss";
 
+/* ... (diğer kısımlar aynen kalsın) ... */
+
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  --background: #121426; /* yeni arka plan */
+  --foreground: #ffffff; /* tüm metinler beyaz */
 }
 
 @theme inline {
@@ -12,10 +14,11 @@
   --font-mono: var(--font-geist-mono);
 }
 
+/* Dark modda da aynı görünmesini istiyorsan böyle bırak */
 @media (prefers-color-scheme: dark) {
   :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+    --background: #121426;
+    --foreground: #ffffff;
   }
 }
 
