@@ -1,13 +1,10 @@
-import { Wallet } from "@coinbase/onchainkit/wallet";
-
-export default function Home() {
+export default function Page() {
   return (
-    <div >
-      <main>
-        <div className="justify-items-right">
-          <Wallet />
-        </div>
-      </main>
-    </div>
+    <main className="mx-auto max-w-screen-xl px-4 py-10">
+      <h1 className="text-2xl font-semibold">Ana Sayfa</h1>
+      <p className="mt-2 text-sm opacity-80">
+        Hoş geldin! Üstteki butondan cüzdanını bağlayabilirsin.
+      </p>
+    </main>
   );
 }
