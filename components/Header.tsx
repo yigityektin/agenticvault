@@ -1,6 +1,7 @@
 "use client";
 
 import Link from "next/link";
+import Image from "next/image";
 import {
   Wallet,
   ConnectWallet,
@@ -12,15 +13,26 @@ import { color } from "@coinbase/onchainkit/theme";
 
 export default function Header() {
   return (
-    <header className="sticky top-[15px] z-50 border-b bg-background/70 backdrop-blur">
+    <header className="sticky top-[5px] z-50 border-b bg-background/70 backdrop-blur">
       <div className="flex h-14 w-full items-center justify-between px-[25px]">
         <div className="flex items-center gap-8">
           <Link
             href="/"
-            className="text-2xl font-extrabold tracking-tight font-verdana"
+            className="flex items-center gap-1 leading-none text-2xl"
           >
-            FinMate
+            <Image
+              src="/finmate-logo.PNG"
+              alt="FinMate logo"
+              width={64}
+              height={64}
+              className="h-[1.4em] w-[2.4em] object-contain shrink-0"
+              priority
+            />
+            <span className="font-extrabold tracking-tight font-verdana align-middle">
+              FinMate
+            </span>
           </Link>
+
           <Link
             href="/page2"
             className="text-2xl font-semibold hover:opacity-80 font-verdana"

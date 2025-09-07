@@ -1,13 +1,12 @@
 "use client";
 
 import { useState } from "react";
-import Image from "next/image";
 
 type Currency = "USDT" | "USDC";
 type Token = { name: string; iconSrc?: string };
 
 export type CardProps = {
-  imageSrc?: string;
+  header: string;
   riskRev?: number;
   stableRev?: number;
   tokens: Token[];
@@ -22,7 +21,6 @@ function CurrencySelect({
   onChange: (c: Currency) => void;
 }) {
   const [open, setOpen] = useState(false);
-
   return (
     <div
       className="relative"
@@ -82,8 +80,9 @@ function CurrencySelect({
   );
 }
 
+// ...
 export default function Card({
-  imageSrc,
+  header,
   riskRev,
   stableRev,
   tokens,
@@ -93,80 +92,58 @@ export default function Card({
   const [currency, setCurrency] = useState<Currency>("USDT");
 
   return (
-    <div className="flex h-full w-full flex-col rounded-[5px] bg-[#333754] p-4 text-white">
-      {/* Image */}
-      {imageSrc && (
-        <div className="mb-3 overflow-hidden rounded-[5px]">
-          <Image
-            src={imageSrc}
-            alt=""
-            width={800}
-            height={450}
-            className="h-36 w-full object-cover"
-            priority={false}
-          />
-        </div>
-      )}
-
-      {/* Revenues */}
-      <div className="space-y-1 text-sm">
-        <div className="flex items-center justify-between">
-          <span>Risk Rev.</span>
-          <span className="font-semibold">{riskRev ?? "--"}%</span>
-        </div>
-        <div className="flex items-center justify-between">
-          <span>Stable Rev.</span>
-          <span className="font-semibold">{stableRev ?? "--"}%</span>
-        </div>
+    <div className="flex w-full flex-col rounded-[5px] bg-[#333754] text-white overflow-hidden">
+      <div className="px-4 py-2 text-center border-b border-white/10">
+        <h3 className="text-lg font-bold">{header}</h3>
       </div>
 
-      {/* Tokens */}
-      <ul className="mt-3 space-y-2">
-        {tokens.slice(0, 3).map((t, i) => (
-          <li key={i} className="flex items-center gap-2 text-sm">
-            {t.iconSrc ? (
-              <Image
-                src={t.iconSrc}
-                alt={t.name}
-                width={20}
-                height={20}
-                className="h-5 w-5 rounded-full object-cover"
-              />
-            ) : (
-              <span className="inline-block h-2 w-2 rounded-full bg-white/70" />
-            )}
-            <span>{t.name}</span>
-          </li>
-        ))}
-      </ul>
-
-      {/* Amount + Currency  */}
-      <div className="mt-4 mx-auto w-[90%]">
-        <div className="flex items-stretch rounded-[8px] bg-[#232A34] focus-within:ring-2 focus-within:ring-[#272EF5]/40">
-          <input
-            type="number"
-            min="0"
-            step="any"
-            inputMode="decimal"
-            placeholder="Amount"
-            value={amount}
-            onChange={(e) => setAmount(e.target.value)}
-            className="flex-1 bg-transparent px-3 py-2 text-sm text-white placeholder-white/60 outline-none"
-          />
-          <div className="border-l border-white/10">
-            <CurrencySelect value={currency} onChange={setCurrency} />
+      <div className="p-3">
+        <div className="space-y-1 text-sm">
+          <div className="flex items-center justify-between">
+            <span>Risk Rev.</span>
+            <span className="font-semibold">{riskRev ?? "--"}%</span>
+          </div>
+          <div className="flex items-center justify-between">
+            <span>Stable Rev.</span>
+            <span className="font-semibold">{stableRev ?? "--"}%</span>
           </div>
         </div>
-      </div>
 
-      {/* Invest */}
-      <button
-        type="button"
-        onClick={() => onInvest?.(Number(amount), currency)}
-        className="invest-btn mt-4 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#4F46E5]/40"
-      >
-        Invest
-      </button>
+        <ul className="mt-2 space-y-2">
+          {tokens.slice(0, 3).map((t, i) => (
+            <li key={i} className="flex items-center gap-2 text-sm">
+              <span className="inline-block h-2 w-2 rounded-full bg-white/70" />
+              <span>{t.name}</span>
+            </li>
+          ))}
+        </ul>
+
+        <div className="mt-2 mx-auto w-[90%]">
+          <div className="flex items-stretch rounded-[8px] bg-[#232A34] focus-within:ring-2 focus-within:ring-[#272EF5]/40">
+            <input
+              type="number"
+              min="0"
+              step="any"
+              inputMode="decimal"
+              placeholder="Amount"
+              value={amount}
+              onChange={(e) => setAmount(e.target.value)}
+              className="flex-1 bg-transparent px-3 py-2 text-sm text-white placeholder-white/60 outline-none"
+            />
+            <div className="border-l border-white/10">
+              <CurrencySelect value={currency} onChange={setCurrency} />
+            </div>
+          </div>
+        </div>
+
+        <button
+          type="button"
+          onClick={() => onInvest?.(Number(amount), currency)}
+          className="invest-btn mt-2 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#4F46E5]/40"
+        >
+          Invest
+        </button>
+      </div>
     </div>
   );
 }
